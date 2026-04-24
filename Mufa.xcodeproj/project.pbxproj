@@ -1,0 +1,447 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		BF01 /* MufaApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR01 /* MufaApp.swift */; };
+		BF02 /* MainShellView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR02 /* MainShellView.swift */; };
+		BF03 /* Theme.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR03 /* Theme.swift */; };
+		BF04 /* AppBackground.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR04 /* AppBackground.swift */; };
+		BF05 /* APIConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR05 /* APIConfiguration.swift */; };
+		BF06 /* APIClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR06 /* APIClient.swift */; };
+		BF07 /* SessionStore.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR07 /* SessionStore.swift */; };
+		BF08 /* Models.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR08 /* Models.swift */; };
+		BF09 /* MufaServices.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR09 /* MufaServices.swift */; };
+		BF10 /* MoyasarCheckoutView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR10 /* MoyasarCheckoutView.swift */; };
+		BF11 /* CreateShipmentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR11 /* CreateShipmentViewModel.swift */; };
+		BF12 /* CreateShipmentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR12 /* CreateShipmentView.swift */; };
+		BF13 /* ShipmentsListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR13 /* ShipmentsListView.swift */; };
+		BF14 /* ShipmentDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR14 /* ShipmentDetailView.swift */; };
+		BF15 /* TrackView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR15 /* TrackView.swift */; };
+		BF16 /* ProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR16 /* ProfileView.swift */; };
+		BF17 /* LoginRegisterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR17 /* LoginRegisterView.swift */; };
+		BF18 /* ChatBotView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR18 /* ChatBotView.swift */; };
+		BF19 /* InfoPagesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = FR19 /* InfoPagesView.swift */; };
+		BF20 /* moyasar_host.html in Resources */ = {isa = PBXBuildFile; fileRef = FR20 /* moyasar_host.html */; };
+		BF21 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = FR24 /* Assets.xcassets */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		FR01 /* MufaApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MufaApp.swift; sourceTree = "<group>"; };
+		FR02 /* MainShellView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainShellView.swift; sourceTree = "<group>"; };
+		FR03 /* Theme.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Theme.swift; sourceTree = "<group>"; };
+		FR04 /* AppBackground.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppBackground.swift; sourceTree = "<group>"; };
+		FR05 /* APIConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIConfiguration.swift; sourceTree = "<group>"; };
+		FR06 /* APIClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIClient.swift; sourceTree = "<group>"; };
+		FR07 /* SessionStore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SessionStore.swift; sourceTree = "<group>"; };
+		FR08 /* Models.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Models.swift; sourceTree = "<group>"; };
+		FR09 /* MufaServices.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MufaServices.swift; sourceTree = "<group>"; };
+		FR10 /* MoyasarCheckoutView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MoyasarCheckoutView.swift; sourceTree = "<group>"; };
+		FR11 /* CreateShipmentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShipmentViewModel.swift; sourceTree = "<group>"; };
+		FR12 /* CreateShipmentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateShipmentView.swift; sourceTree = "<group>"; };
+		FR13 /* ShipmentsListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentsListView.swift; sourceTree = "<group>"; };
+		FR14 /* ShipmentDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShipmentDetailView.swift; sourceTree = "<group>"; };
+		FR15 /* TrackView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TrackView.swift; sourceTree = "<group>"; };
+		FR16 /* ProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileView.swift; sourceTree = "<group>"; };
+		FR17 /* LoginRegisterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginRegisterView.swift; sourceTree = "<group>"; };
+		FR18 /* ChatBotView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatBotView.swift; sourceTree = "<group>"; };
+		FR19 /* InfoPagesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoPagesView.swift; sourceTree = "<group>"; };
+		FR24 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		FR20 /* moyasar_host.html */ = {isa = PBXFileReference; lastKnownFileType = text.html; path = moyasar_host.html; sourceTree = "<group>"; };
+		FR21 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		FR22 /* Debug.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Debug.xcconfig; sourceTree = "<group>"; };
+		FR23 /* Release.xcconfig */ = {isa = PBXFileReference; lastKnownFileType = text.xcconfig; path = Release.xcconfig; sourceTree = "<group>"; };
+		PROD1 /* Mufa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Mufa.app; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		FW01 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		GR00 = {
+			isa = PBXGroup;
+			children = (
+				GR01 /* Config */,
+				GR02 /* Mufa */,
+				GR03 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		GR01 /* Config */ = {
+			isa = PBXGroup;
+			children = (
+				FR22 /* Debug.xcconfig */,
+				FR23 /* Release.xcconfig */,
+			);
+			path = Config;
+			sourceTree = "<group>";
+		};
+		GR02 /* Mufa */ = {
+			isa = PBXGroup;
+			children = (
+				FR21 /* Info.plist */,
+				FR24 /* Assets.xcassets */,
+				FR01 /* MufaApp.swift */,
+				GR04 /* Features */,
+				GR05 /* Core */,
+				GR06 /* Networking */,
+				GR07 /* DesignSystem */,
+				GR08 /* Resources */,
+			);
+			path = Mufa;
+			sourceTree = "<group>";
+		};
+		GR03 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				PROD1 /* Mufa.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		GR04 /* Features */ = {
+			isa = PBXGroup;
+			children = (
+				FR02 /* MainShellView.swift */,
+				GR09 /* Payment */,
+				GR10 /* Create */,
+				GR11 /* Shipments */,
+				GR12 /* Track */,
+				GR13 /* Profile */,
+				GR14 /* Auth */,
+				GR15 /* ChatBot */,
+				GR16 /* Info */,
+			);
+			path = Features;
+			sourceTree = "<group>";
+		};
+		GR09 /* Payment */ = {
+			isa = PBXGroup;
+			children = (
+				FR10 /* MoyasarCheckoutView.swift */,
+			);
+			path = Payment;
+			sourceTree = "<group>";
+		};
+		GR10 /* Create */ = {
+			isa = PBXGroup;
+			children = (
+				FR11 /* CreateShipmentViewModel.swift */,
+				FR12 /* CreateShipmentView.swift */,
+			);
+			path = Create;
+			sourceTree = "<group>";
+		};
+		GR11 /* Shipments */ = {
+			isa = PBXGroup;
+			children = (
+				FR13 /* ShipmentsListView.swift */,
+				FR14 /* ShipmentDetailView.swift */,
+			);
+			path = Shipments;
+			sourceTree = "<group>";
+		};
+		GR12 /* Track */ = {
+			isa = PBXGroup;
+			children = (
+				FR15 /* TrackView.swift */,
+			);
+			path = Track;
+			sourceTree = "<group>";
+		};
+		GR13 /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				FR16 /* ProfileView.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		GR14 /* Auth */ = {
+			isa = PBXGroup;
+			children = (
+				FR17 /* LoginRegisterView.swift */,
+			);
+			path = Auth;
+			sourceTree = "<group>";
+		};
+		GR15 /* ChatBot */ = {
+			isa = PBXGroup;
+			children = (
+				FR18 /* ChatBotView.swift */,
+			);
+			path = ChatBot;
+			sourceTree = "<group>";
+		};
+		GR16 /* Info */ = {
+			isa = PBXGroup;
+			children = (
+				FR19 /* InfoPagesView.swift */,
+			);
+			path = Info;
+			sourceTree = "<group>";
+		};
+		GR05 /* Core */ = {
+			isa = PBXGroup;
+			children = (
+				FR05 /* APIConfiguration.swift */,
+				FR06 /* APIClient.swift */,
+				FR07 /* SessionStore.swift */,
+				FR08 /* Models.swift */,
+			);
+			path = Core;
+			sourceTree = "<group>";
+		};
+		GR06 /* Networking */ = {
+			isa = PBXGroup;
+			children = (
+				FR09 /* MufaServices.swift */,
+			);
+			path = Networking;
+			sourceTree = "<group>";
+		};
+		GR07 /* DesignSystem */ = {
+			isa = PBXGroup;
+			children = (
+				FR03 /* Theme.swift */,
+				FR04 /* AppBackground.swift */,
+			);
+			path = DesignSystem;
+			sourceTree = "<group>";
+		};
+		GR08 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				FR20 /* moyasar_host.html */,
+			);
+			path = Resources;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		NT01 /* Mufa */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = NT02 /* Build configuration list for PBXNativeTarget "Mufa" */;
+			buildPhases = (
+				SRC01 /* Sources */,
+				FW01 /* Frameworks */,
+				RES01 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = Mufa;
+			productName = Mufa;
+			productReference = PROD1 /* Mufa.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		PR01 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1500;
+				LastUpgradeCheck = 1500;
+				TargetAttributes = {
+					NT01 = {
+						CreatedOnToolsVersion = 15.0;
+					};
+				};
+			};
+			buildConfigurationList = PR02 /* Build configuration list for PBXProject "Mufa" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = ar;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+				ar,
+			);
+			mainGroup = GR00;
+			productRefGroup = GR03 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				NT01 /* Mufa */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		RES01 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF20 /* moyasar_host.html in Resources */,
+				BF21 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		SRC01 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				BF01 /* MufaApp.swift in Sources */,
+				BF02 /* MainShellView.swift in Sources */,
+				BF03 /* Theme.swift in Sources */,
+				BF04 /* AppBackground.swift in Sources */,
+				BF05 /* APIConfiguration.swift in Sources */,
+				BF06 /* APIClient.swift in Sources */,
+				BF07 /* SessionStore.swift in Sources */,
+				BF08 /* Models.swift in Sources */,
+				BF09 /* MufaServices.swift in Sources */,
+				BF10 /* MoyasarCheckoutView.swift in Sources */,
+				BF11 /* CreateShipmentViewModel.swift in Sources */,
+				BF12 /* CreateShipmentView.swift in Sources */,
+				BF13 /* ShipmentsListView.swift in Sources */,
+				BF14 /* ShipmentDetailView.swift in Sources */,
+				BF15 /* TrackView.swift in Sources */,
+				BF16 /* ProfileView.swift in Sources */,
+				BF17 /* LoginRegisterView.swift in Sources */,
+				BF18 /* ChatBotView.swift in Sources */,
+				BF19 /* InfoPagesView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		XC01 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FR22 /* Debug.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				ONLY_ACTIVE_ARCH = YES;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		XC02 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = FR23 /* Release.xcconfig */;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ENABLE_MODULES = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				SWIFT_COMPILATION_MODE = wholemodule;
+			};
+			name = Release;
+		};
+		XC03 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Mufa/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.mufa.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		XC04 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Manual;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = "";
+				GENERATE_INFOPLIST_FILE = NO;
+				INFOPLIST_FILE = Mufa/Info.plist;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0.0;
+				PRODUCT_BUNDLE_IDENTIFIER = app.mufa.ios;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
+				SUPPORTS_MACCATALYST = NO;
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		NT02 /* Build configuration list for PBXNativeTarget "Mufa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				XC03 /* Debug */,
+				XC04 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		PR02 /* Build configuration list for PBXProject "Mufa" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				XC01 /* Debug */,
+				XC02 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = PR01 /* Project object */;
+}

@@ -1,0 +1,2 @@
+// مطابق لـ VITE_API_URL في `.env` (جذر المشروع). المصدر الوحيد لعنوان الـ API في iOS.
+API_BASE_URL = https:/$()/mufabackend.abdullah9.sa/api

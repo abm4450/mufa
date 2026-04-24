@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html dir="rtl" lang="ar">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link rel="stylesheet" href="https://cdn.moyasar.com/mpf/1.15.0/moyasar.css">
+    <script src="https://cdn.moyasar.com/mpf/1.15.0/moyasar.js"></script>
+    <style>body{margin:0;padding:12px;font-family:-apple-system,sans-serif;background:#f7f9fc;}#moyasar-form{min-height:420px;}</style>
+</head>
+<body>
+<div id="moyasar-form"></div>
+<script>
+(function(){
+  var cfg = __MOYASAR_CONFIG__;
+  function run(){
+    if (!window.Moyasar || typeof Moyasar.init !== 'function') return false;
+    var el = document.getElementById('moyasar-form');
+    if (!el) return false;
+    el.innerHTML = '';
+    try {
+      Moyasar.init({
+        element: el,
+        amount: cfg.amount,
+        currency: cfg.currency,
+        description: cfg.description,
+        publishable_api_key: cfg.publishable_api_key,
+        callback_url: cfg.callback_url,
+        metadata: cfg.metadata || {},
+        language: 'ar',
+        methods: ['creditcard', 'applepay'],
+        apple_pay: {
+          country: 'SA',
+          label: 'Mufa',
+          validate_merchant_url: 'https://api.moyasar.com/v1/applepay/initiate'
+        },
+        supported_networks: ['mada', 'visa', 'mastercard']
+      });
+      return true;
+    } catch(e) { return false; }
+  }
+  if (run()) return;
+  document.addEventListener('DOMContentLoaded', function(){
+    setTimeout(function(){ run(); }, 100);
+  });
+  window.addEventListener('load', function(){
+    setTimeout(function(){ run(); }, 0);
+  });
+})();
+</script>
+</body>
+</html>
