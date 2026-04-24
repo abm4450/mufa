@@ -1,22 +1,55 @@
-# جذر المستودع = مجلد ios (افتح Mufa.xcodeproj من هنا).
-# التوقيع وتوزيع IPA خارج هذا المستودع.
+# جذر المستودع = مجلد ios.
+#
+# ─── ios-archive ───
+# يُنتج Mufa.xcarchive.zip بدون توقيع توزيع على Codemagic.
+# التوقيع وإخراج IPA يتم لاحقاً عندك (Xcode → Organizer → Distribute، أو xcodebuild -exportArchive).
+
 workflows:
-  ios-workflow:
-    name: Mufa iOS (Simulator build check)
+  ios-archive:
+    name: Mufa iOS (أرشيف — توقيع خارجي)
+    max_build_duration: 120
+    instance_type: mac_mini_m2
+    environment:
+      xcode: latest
+    scripts:
+      - name: عرض API_BASE_URL (Release)
+        script: |
+          #!/bin/sh
+          set -eu
+          xcodebuild -project Mufa.xcodeproj -scheme Mufa -configuration Release -showBuildSettings 2>/dev/null | grep -E "^\s*API_BASE_URL\s*=" || true
+      - name: Archive بدون توقيع (للتوقيع لاحقاً)
+        script: |
+          #!/bin/sh
+          set -eu
+          ARCHIVE="$CM_BUILD_DIR/Mufa.xcarchive"
+          rm -rf "$ARCHIVE"
+          xcodebuild archive \
+            -project Mufa.xcodeproj \
+            -scheme Mufa \
+            -configuration Release \
+            -destination 'generic/platform=iOS' \
+            -archivePath "$ARCHIVE" \
+            -derivedDataPath "$CM_BUILD_DIR/DerivedData" \
+            CODE_SIGNING_ALLOWED=NO \
+            CODE_SIGNING_REQUIRED=NO \
+            DEVELOPMENT_TEAM="" \
+            CODE_SIGN_STYLE=Manual
+          ditto -c -k --sequesterRsrc --keepParent "$ARCHIVE" "$CM_BUILD_DIR/Mufa.xcarchive.zip"
+          ls -la "$CM_BUILD_DIR/Mufa.xcarchive.zip"
+    artifacts:
+      - Mufa.xcarchive.zip
+
+  ios-simulator:
+    name: Mufa iOS (فحص محاكي)
     max_build_duration: 60
     instance_type: mac_mini_m2
     environment:
       xcode: latest
-    # بدون هذا القسم يظهر "No artifacts were found" — نرفع حزمة محاكي + نسخة Info للتحقق من API.
-    artifacts:
-      - Mufa-simulator.zip
-      - build-info/API_BASE_URL.txt
     scripts:
       - name: Build for iOS Simulator
         script: |
           #!/bin/sh
           set -eu
-          # generic/platform=iOS Simulator يجبر Xcode على بناء arm64 و x86_64 معاً؛ شريحة x86_64 تفشل على مضيف Apple Silicon.
           SIM_UDID="$(python3 <<'PY'
           import json, subprocess
           j = json.loads(subprocess.check_output(
@@ -54,16 +87,3 @@ workflows:
             ONLY_ACTIVE_ARCH=YES \
             'EXCLUDED_ARCHS[sdk=iphonesimulator*]'=x86_64 \
             build
-          APP="$CM_BUILD_DIR/DerivedData/Build/Products/Debug-iphonesimulator/Mufa.app"
-          if [ ! -d "$APP" ]; then
-            echo "ERROR: expected app at $APP"
-            exit 1
-          fi
-          mkdir -p build-info
-          API_VAL="$(/usr/libexec/PlistBuddy -c 'Print :API_BASE_URL' "$APP/Info.plist" 2>/dev/null || true)"
-          echo "$API_VAL" > build-info/API_BASE_URL.txt
-          echo "----- API_BASE_URL في الـ bundle (Info.plist) -----"
-          cat build-info/API_BASE_URL.txt
-          echo "-----"
-          (cd "$(dirname "$APP")" && zip -qr "$CM_BUILD_DIR/Mufa-simulator.zip" "$(basename "$APP")")
-          echo "Artifact: Mufa-simulator.zip ($(du -h "$CM_BUILD_DIR/Mufa-simulator.zip" | cut -f1))"
