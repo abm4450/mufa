@@ -3,12 +3,14 @@ import Foundation
 enum AuthService {
     static func register(phone: String, name: String, password: String) async throws -> AuthResponse {
         struct B: Encodable { let phone, name, password: String }
-        try await APIClient.shared.request("POST", path: "/user/register", body: B(phone: phone, name: name, password: password))
+        let r: AuthResponse = try await APIClient.shared.request("POST", path: "/user/register", body: B(phone: phone, name: name, password: password))
+        return r
     }
 
     static func login(phone: String, password: String) async throws -> AuthResponse {
         struct B: Encodable { let phone, password: String }
-        try await APIClient.shared.request("POST", path: "/user/login", body: B(phone: phone, password: password))
+        let r: AuthResponse = try await APIClient.shared.request("POST", path: "/user/login", body: B(phone: phone, password: password))
+        return r
     }
 
     static func me(token: String) async throws -> AuthUser {
@@ -84,11 +86,13 @@ enum OrdersService {
     }
 
     static func myOrders(token: String, page: Int = 1, sync: Bool = true) async throws -> OrdersListResponse {
-        try await APIClient.shared.request("GET", path: "/orders?page=\(page)\(sync ? "&sync=true" : "")", token: token)
+        let r: OrdersListResponse = try await APIClient.shared.request("GET", path: "/orders?page=\(page)\(sync ? "&sync=true" : "")", token: token)
+        return r
     }
 
     static func order(id: Int, token: String?) async throws -> Order {
-        try await APIClient.shared.request("GET", path: "/orders/\(id)", token: token)
+        let o: Order = try await APIClient.shared.request("GET", path: "/orders/\(id)", token: token)
+        return o
     }
 
     static func carriersForOrder(orderId: Int) async throws -> [CarrierQuote] {
@@ -147,15 +151,18 @@ enum PublicOrdersService {
 
 enum PaymentsService {
     static func initiate(_ payload: CreateOrderPayload, token: String?) async throws -> InitiatePaymentResponse {
-        try await APIClient.shared.request("POST", path: "/payments/initiate", body: payload, token: token)
+        let r: InitiatePaymentResponse = try await APIClient.shared.request("POST", path: "/payments/initiate", body: payload, token: token)
+        return r
     }
 
     static func status(orderId: Int, token: String) async throws -> PaymentStatusResponse {
-        try await APIClient.shared.request("GET", path: "/payments/\(orderId)/status", token: token)
+        let r: PaymentStatusResponse = try await APIClient.shared.request("GET", path: "/payments/\(orderId)/status", token: token)
+        return r
     }
 
     static func retry(orderId: Int, token: String) async throws -> InitiatePaymentResponse {
         struct EmptyJSON: Encodable {}
-        return try await APIClient.shared.request("POST", path: "/payments/\(orderId)/retry", body: EmptyJSON(), token: token)
+        let r: InitiatePaymentResponse = try await APIClient.shared.request("POST", path: "/payments/\(orderId)/retry", body: EmptyJSON(), token: token)
+        return r
     }
 }
