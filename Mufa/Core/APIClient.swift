@@ -100,16 +100,13 @@ actor APIClient {
         return data
     }
 
-    func postTrack(trackingId: String, shippingType: String? = nil) async throws -> (query: String?, tracking: [String: Any]) {
+    /// جسم الاستجابة خام؛ يُفسَّر في الواجهة لتفادي إرجاع `[String: Any]` عبر حدود الـ actor (غير Sendable في Swift 6).
+    func postTrack(trackingId: String, shippingType: String? = nil) async throws -> Data {
         struct Body: Encodable {
             let tracking_id: String
             let shipping_type: String?
         }
-        let data = try await requestData("POST", path: "/track", body: Body(tracking_id: trackingId, shipping_type: shippingType))
-        let obj = try JSONSerialization.jsonObject(with: data) as? [String: Any] ?? [:]
-        let q = obj["query"] as? String
-        let t = obj["tracking"] as? [String: Any] ?? [:]
-        return (q, t)
+        return try await requestData("POST", path: "/track", body: Body(tracking_id: trackingId, shipping_type: shippingType))
     }
 
     private static func parseErrorMessage(data: Data) -> String? {

@@ -68,12 +68,13 @@ struct ShipmentDetailView: View {
     private func refreshTrack() async {
         guard let t = session.token else { return }
         do {
-            let raw = try await OrdersService.trackAuthenticated(orderId: orderId, token: t)
-            if let data = try? JSONSerialization.data(withJSONObject: raw, options: [.prettyPrinted]),
-               let s = String(data: data, encoding: .utf8) {
+            let data = try await OrdersService.trackAuthenticated(orderId: orderId, token: t)
+            if let obj = try? JSONSerialization.jsonObject(with: data) as? [String: Any],
+               let pretty = try? JSONSerialization.data(withJSONObject: obj, options: [.prettyPrinted]),
+               let s = String(data: pretty, encoding: .utf8) {
                 trackingText = s
             } else {
-                trackingText = "\(raw)"
+                trackingText = String(data: data, encoding: .utf8) ?? ""
             }
         } catch {
             trackingText = error.localizedDescription

@@ -103,10 +103,8 @@ enum OrdersService {
         return r.order
     }
 
-    static func trackAuthenticated(orderId: Int, token: String) async throws -> [String: Any] {
-        let data = try await APIClient.shared.requestData("POST", path: "/orders/\(orderId)/track", token: token)
-        let obj = try JSONSerialization.jsonObject(with: data) as? [String: Any] ?? [:]
-        return obj
+    static func trackAuthenticated(orderId: Int, token: String) async throws -> Data {
+        try await APIClient.shared.requestData("POST", path: "/orders/\(orderId)/track", token: token)
     }
 
     static func labelUrl(orderId: Int, token: String) async throws -> String {

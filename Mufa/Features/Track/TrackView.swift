@@ -32,12 +32,14 @@ struct TrackView: View {
         result = nil
         defer { loading = false }
         do {
-            let (_, t) = try await APIClient.shared.postTrack(trackingId: q)
-            if let data = try? JSONSerialization.data(withJSONObject: t, options: [.prettyPrinted]),
-               let s = String(data: data, encoding: .utf8) {
+            let data = try await APIClient.shared.postTrack(trackingId: q)
+            let obj = try JSONSerialization.jsonObject(with: data) as? [String: Any] ?? [:]
+            let t = obj["tracking"] as? [String: Any] ?? [:]
+            if let pretty = try? JSONSerialization.data(withJSONObject: t, options: [.prettyPrinted]),
+               let s = String(data: pretty, encoding: .utf8) {
                 result = s
             } else {
-                result = "\(t)"
+                result = String(data: data, encoding: .utf8) ?? ""
             }
         } catch {
             result = error.localizedDescription
