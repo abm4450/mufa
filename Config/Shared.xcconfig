@@ -1,2 +1,5 @@
 // مطابق لـ VITE_API_URL في `.env` (جذر المشروع). المصدر الوحيد لعنوان الـ API في iOS.
 API_BASE_URL = https:/$()/mufabackend.abdullah9.sa/api
+
+// أجهزة Apple Silicon وCI (مثل Codemagic): لا تُبنى شريحة محاكي Intel — يتجنب فشل SwiftEmitModule على x86_64.
+EXCLUDED_ARCHS[sdk=iphonesimulator*] = x86_64

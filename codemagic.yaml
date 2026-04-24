@@ -11,11 +11,42 @@ workflows:
       - name: Build for iOS Simulator
         script: |
           #!/bin/sh
-          set -e
+          set -eu
+          # generic/platform=iOS Simulator يجبر Xcode على بناء arm64 و x86_64 معاً؛ شريحة x86_64 تفشل على مضيف Apple Silicon.
+          SIM_UDID="$(python3 <<'PY'
+          import json, subprocess
+          j = json.loads(subprocess.check_output(
+              ["xcrun", "simctl", "list", "devices", "available", "-j"], text=True
+          ))
+          def udid_order():
+              for runtime, devs in j.get("devices", {}).items():
+                  if "iOS" not in runtime:
+                      continue
+                  for d in devs:
+                      if d.get("isAvailable") and d.get("udid"):
+                          if "iPhone" in (d.get("name") or ""):
+                              yield d["udid"]
+              for runtime, devs in j.get("devices", {}).items():
+                  if "iOS" not in runtime:
+                      continue
+                  for d in devs:
+                      if d.get("isAvailable") and d.get("udid"):
+                          yield d["udid"]
+          u = next(udid_order(), None)
+          if not u:
+              raise SystemExit("no available iOS Simulator")
+          print(u)
+          PY
+          )"
+          echo "Building for simulator id=$SIM_UDID"
           xcodebuild \
             -project Mufa.xcodeproj \
             -scheme Mufa \
             -configuration Debug \
-            -destination 'generic/platform=iOS Simulator' \
+            -sdk iphonesimulator \
+            -destination "id=$SIM_UDID" \
             -derivedDataPath "$CM_BUILD_DIR/DerivedData" \
+            ARCHS=arm64 \
+            ONLY_ACTIVE_ARCH=YES \
+            'EXCLUDED_ARCHS[sdk=iphonesimulator*]'=x86_64 \
             build
