@@ -7,6 +7,10 @@ workflows:
     instance_type: mac_mini_m2
     environment:
       xcode: latest
+    # بدون هذا القسم يظهر "No artifacts were found" — نرفع حزمة محاكي + نسخة Info للتحقق من API.
+    artifacts:
+      - Mufa-simulator.zip
+      - build-info/API_BASE_URL.txt
     scripts:
       - name: Build for iOS Simulator
         script: |
@@ -50,3 +54,16 @@ workflows:
             ONLY_ACTIVE_ARCH=YES \
             'EXCLUDED_ARCHS[sdk=iphonesimulator*]'=x86_64 \
             build
+          APP="$CM_BUILD_DIR/DerivedData/Build/Products/Debug-iphonesimulator/Mufa.app"
+          if [ ! -d "$APP" ]; then
+            echo "ERROR: expected app at $APP"
+            exit 1
+          fi
+          mkdir -p build-info
+          API_VAL="$(/usr/libexec/PlistBuddy -c 'Print :API_BASE_URL' "$APP/Info.plist" 2>/dev/null || true)"
+          echo "$API_VAL" > build-info/API_BASE_URL.txt
+          echo "----- API_BASE_URL في الـ bundle (Info.plist) -----"
+          cat build-info/API_BASE_URL.txt
+          echo "-----"
+          (cd "$(dirname "$APP")" && zip -qr "$CM_BUILD_DIR/Mufa-simulator.zip" "$(basename "$APP")")
+          echo "Artifact: Mufa-simulator.zip ($(du -h "$CM_BUILD_DIR/Mufa-simulator.zip" | cut -f1))"
