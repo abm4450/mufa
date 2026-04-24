@@ -1,28 +1,36 @@
 # جذر المستودع = مجلد ios.
 #
-# ─── ios-archive ───
-# يُنتج Mufa.xcarchive.zip بدون توقيع توزيع على Codemagic.
-# التوقيع وإخراج IPA يتم لاحقاً عندك (Xcode → Organizer → Distribute، أو xcodebuild -exportArchive).
+# ─── ios-ipa-unsigned ───
+# يُنتج Mufa.ipa بدون توقيع جاهز للتوقيع في Sideloadly.
 
 workflows:
-  ios-archive:
-    name: Mufa iOS (أرشيف — توقيع خارجي)
+  ios-ipa-unsigned:
+    name: Mufa iOS (IPA — للتوقيع في Sideloadly)
     max_build_duration: 120
     instance_type: mac_mini_m2
     environment:
       xcode: latest
+
     scripts:
       - name: عرض API_BASE_URL (Release)
         script: |
           #!/bin/sh
           set -eu
-          xcodebuild -project Mufa.xcodeproj -scheme Mufa -configuration Release -showBuildSettings 2>/dev/null | grep -E "^\s*API_BASE_URL\s*=" || true
-      - name: Archive بدون توقيع (للتوقيع لاحقاً)
+          xcodebuild -project Mufa.xcodeproj \
+            -scheme Mufa \
+            -configuration Release \
+            -showBuildSettings 2>/dev/null \
+            | grep -E "^\s*(API_BASE_URL|PRODUCT_BUNDLE_IDENTIFIER)\s*=" || true
+
+      - name: Archive وتجميع IPA بدون توقيع
         script: |
           #!/bin/sh
           set -eu
+
           ARCHIVE="$CM_BUILD_DIR/Mufa.xcarchive"
-          rm -rf "$ARCHIVE"
+          EXPORT_DIR="$CM_BUILD_DIR/export"
+
+          # Archive بدون توقيع
           xcodebuild archive \
             -project Mufa.xcodeproj \
             -scheme Mufa \
@@ -33,11 +41,19 @@ workflows:
             CODE_SIGNING_ALLOWED=NO \
             CODE_SIGNING_REQUIRED=NO \
             DEVELOPMENT_TEAM="" \
-            CODE_SIGN_STYLE=Manual
-          ditto -c -k --sequesterRsrc --keepParent "$ARCHIVE" "$CM_BUILD_DIR/Mufa.xcarchive.zip"
-          ls -la "$CM_BUILD_DIR/Mufa.xcarchive.zip"
+            CODE_SIGN_STYLE=Manual \
+            CODE_SIGN_IDENTITY=""
+
+          # تجميع IPA يدوياً من الـ .app داخل الأرشيف
+          APP_PATH=$(find "$ARCHIVE" -name "*.app" | head -1)
+          mkdir -p "$EXPORT_DIR/Payload"
+          cp -r "$APP_PATH" "$EXPORT_DIR/Payload/"
+          cd "$EXPORT_DIR"
+          zip -r "Mufa.ipa" Payload/
+          ls -la "$EXPORT_DIR/Mufa.ipa"
+
     artifacts:
-      - Mufa.xcarchive.zip
+      - $CM_BUILD_DIR/export/Mufa.ipa
 
   ios-simulator:
     name: Mufa iOS (فحص محاكي)
@@ -45,6 +61,7 @@ workflows:
     instance_type: mac_mini_m2
     environment:
       xcode: latest
+
     scripts:
       - name: Build for iOS Simulator
         script: |
