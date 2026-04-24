@@ -3,3 +3,9 @@ API_BASE_URL = https:/$()/mufabackend.abdullah9.sa/api
 
 // أجهزة Apple Silicon وCI (مثل Codemagic): لا تُبنى شريحة محاكي Intel — يتجنب فشل SwiftEmitModule على x86_64.
 EXCLUDED_ARCHS[sdk=iphonesimulator*] = x86_64
+
+// Xcode 16 + CI: فحص التزامن الصارم مع @MainActor + ObservableObject يكسر EmitSwiftModule أحياناً بدون سطر error واضح.
+SWIFT_STRICT_CONCURRENCY = minimal
+
+// تعطيل الوحدات الصريحة يتفادى أعطال دمج الوحدة (EmitSwiftModule) على بعض مضيفي البناء.
+SWIFT_ENABLE_EXPLICIT_MODULES = NO
